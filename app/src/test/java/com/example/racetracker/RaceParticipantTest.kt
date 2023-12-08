@@ -72,4 +72,14 @@ class RaceParticipantTest {
         }
         assertEquals(expectedProgress*2, raceParticipant.currentProgress)
     }
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test(expected = IllegalArgumentException::class)
+    fun raceParticipant_ProgressIncrementZero_ExceptionThrown() = runTest {
+        RaceParticipant(name = "Progress Test", progressIncrement = 0)
+    }
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test(expected = IllegalArgumentException::class)
+    fun raceParticipant_MaxProgressZero_ExceptionThrown() = runTest {
+        RaceParticipant(name = "Progress Test", maxProgress = 0)
+    }
 }
